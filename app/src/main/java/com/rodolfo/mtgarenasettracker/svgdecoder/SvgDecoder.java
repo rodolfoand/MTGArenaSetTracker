@@ -1,4 +1,4 @@
-package com.rodolfo.mtgarenasettracker.http;
+package com.rodolfo.mtgarenasettracker.svgdecoder;
 
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;

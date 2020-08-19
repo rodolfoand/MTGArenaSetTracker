@@ -13,7 +13,7 @@ public class Set {
     private String search_uri;
     private String released_at;
     private String set_type;
-    private float card_count;
+    private int card_count;
     private float printed_size;
     private boolean digital;
     private boolean nonfoil_only;
@@ -25,7 +25,7 @@ public class Set {
     public Set() {
     }
 
-    public Set(String object, String id, String code, String mtgo_code, String arena_code, float tcgplayer_id, String name, String uri, String scryfall_uri, String search_uri, String released_at, String set_type, float card_count, float printed_size, boolean digital, boolean nonfoil_only, boolean foil_only, String block_code, String block, String icon_svg_uri) {
+    public Set(String object, String id, String code, String mtgo_code, String arena_code, float tcgplayer_id, String name, String uri, String scryfall_uri, String search_uri, String released_at, String set_type, int card_count, float printed_size, boolean digital, boolean nonfoil_only, boolean foil_only, String block_code, String block, String icon_svg_uri) {
         this.object = object;
         this.id = id;
         this.code = code;
@@ -144,11 +144,11 @@ public class Set {
         this.set_type = set_type;
     }
 
-    public float getCard_count() {
+    public int getCard_count() {
         return card_count;
     }
 
-    public void setCard_count(float card_count) {
+    public void setCard_count(int card_count) {
         this.card_count = card_count;
     }
 

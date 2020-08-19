@@ -1,4 +1,4 @@
-package com.rodolfo.mtgarenasettracker.database;
+package com.rodolfo.mtgarenasettracker.room;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package com.rodolfo.mtgarenasettracker.http;
+package com.rodolfo.mtgarenasettracker.svgdecoder;
 
 import android.graphics.Picture;
 import android.graphics.drawable.PictureDrawable;
