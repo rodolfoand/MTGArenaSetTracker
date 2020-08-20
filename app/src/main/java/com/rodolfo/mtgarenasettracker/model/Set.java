@@ -1,31 +1,80 @@
 package com.rodolfo.mtgarenasettracker.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "set_table")
 public class Set {
-    private String object;
-    private String id;
-    private String code;
-    private String mtgo_code;
-    private String arena_code;
-    private float tcgplayer_id;
-    private String name;
-    private String uri;
-    private String scryfall_uri;
-    private String search_uri;
-    private String released_at;
-    private String set_type;
-    private int card_count;
-    private float printed_size;
-    private boolean digital;
-    private boolean nonfoil_only;
-    private boolean foil_only;
+    @ColumnInfo(name = "object")
+    public String object;
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
+    public String id;
+
+    @ColumnInfo(name = "code")
+    public String code;
+
+    @ColumnInfo(name = "mtgo_code")
+    public String mtgo_code;
+
+    @ColumnInfo(name = "arena_code")
+    public String arena_code;
+
+    @ColumnInfo(name = "tcgplayer_id")
+    public int tcgplayer_id;
+
+    @ColumnInfo(name = "name")
+    public String name;
+
+    @ColumnInfo(name = "uri")
+    public String uri;
+
+    @ColumnInfo(name = "scryfall_uri")
+    public String scryfall_uri;
+
+    @ColumnInfo(name = "search_uri")
+    public String search_uri;
+
+    @ColumnInfo(name = "released_at")
+    public String released_at;
+
+    @ColumnInfo(name = "set_type")
+    public String set_type;
+
+    @ColumnInfo(name = "card_count")
+    public int card_count;
+
+    @ColumnInfo(name = "printed_size")
+    public int printed_size;
+
+    @ColumnInfo(name = "digital")
+    public boolean digital;
+
+    @ColumnInfo(name = "nonfoil_only")
+    public boolean nonfoil_only;
+
+    @ColumnInfo(name = "foil_only")
+    public boolean foil_only;
+
+    @ColumnInfo(name = "block_code")
     private String block_code;
+
+    @ColumnInfo(name = "block")
     private String block;
+
+    @ColumnInfo(name = "icon_svg_uri")
     private String icon_svg_uri;
 
+    @Ignore
     public Set() {
     }
 
-    public Set(String object, String id, String code, String mtgo_code, String arena_code, float tcgplayer_id, String name, String uri, String scryfall_uri, String search_uri, String released_at, String set_type, int card_count, float printed_size, boolean digital, boolean nonfoil_only, boolean foil_only, String block_code, String block, String icon_svg_uri) {
+    public Set(String object, String id, String code, String mtgo_code, String arena_code, int tcgplayer_id, String name, String uri, String scryfall_uri, String search_uri, String released_at, String set_type, int card_count, int printed_size, boolean digital, boolean nonfoil_only, boolean foil_only, String block_code, String block, String icon_svg_uri) {
         this.object = object;
         this.id = id;
         this.code = code;
@@ -88,11 +137,11 @@ public class Set {
         this.arena_code = arena_code;
     }
 
-    public float getTcgplayer_id() {
+    public int getTcgplayer_id() {
         return tcgplayer_id;
     }
 
-    public void setTcgplayer_id(float tcgplayer_id) {
+    public void setTcgplayer_id(int tcgplayer_id) {
         this.tcgplayer_id = tcgplayer_id;
     }
 
@@ -152,11 +201,11 @@ public class Set {
         this.card_count = card_count;
     }
 
-    public float getPrinted_size() {
+    public int getPrinted_size() {
         return printed_size;
     }
 
-    public void setPrinted_size(float printed_size) {
+    public void setPrinted_size(int printed_size) {
         this.printed_size = printed_size;
     }
 
