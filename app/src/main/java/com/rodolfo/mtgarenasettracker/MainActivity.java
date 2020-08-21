@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.rodolfo.mtgarenasettracker.model.Set;
 import com.rodolfo.mtgarenasettracker.room.SetViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
 import android.view.View;
 
@@ -20,12 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
 
     private SetViewModel mSetViewModel;
+    public static final int ALL_SETS_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +29,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        mSetViewModel = new ViewModelProvider(this).get(SetViewModel.class);
-        LiveData<List<Set>> sets= mSetViewModel.getAllSets();
-        if (sets.getValue()!=null && sets.getValue().size()>0) Toast.makeText(this, "", Toast.LENGTH_LONG).show();
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(view.getContext(), ListAllSetsActivity.class));
-
-
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), AllSetsListActivity.class);
+                startActivityForResult(intent, ALL_SETS_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -79,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RESULT_OK){
-            Toast.makeText(this, "T", Toast.LENGTH_SHORT).show();
+        if (requestCode == ALL_SETS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+            Toast.makeText(this, data.getStringExtra(SetAdapter.EXTRA_REPLY), Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, "T2", Toast.LENGTH_SHORT).show();
     }
 }

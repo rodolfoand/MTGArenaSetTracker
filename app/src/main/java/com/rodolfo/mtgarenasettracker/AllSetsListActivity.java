@@ -1,7 +1,6 @@
 package com.rodolfo.mtgarenasettracker;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,10 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,7 +49,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAllSetsActivity extends AppCompatActivity implements View.OnClickListener{
+public class AllSetsListActivity extends AppCompatActivity {
 
     private RecyclerView allSetsRecyclerView;
     private SetAdapter setAdapter;
@@ -72,37 +69,13 @@ public class ListAllSetsActivity extends AppCompatActivity implements View.OnCli
                 LinearLayoutManager(this);
         allSetsRecyclerView.setLayoutManager(linearLayoutManager);
 
-
-        getListSets();
-
-//        addSetButton = (MaterialButton)findViewById(R.id.addSetButton);
-//        addSetButton.setOnClickListener(this);
-//        addSetButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(v.getContext(), "Add", Toast.LENGTH_LONG).show();
-//            }
-//        });
-
+        getSetsList();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK){
-            Toast.makeText(this, "L", Toast.LENGTH_SHORT).show();
-        }
-        Toast.makeText(this, "L2", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    private List<Set> getListSets() {
+    private List<Set> getSetsList() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.scryfall.com/sets/";
+        String url = "https://api.scryfall.com/sets/";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -178,7 +151,7 @@ class SetAdapter extends RecyclerView.Adapter<SetViewHolder>{
     SetAdapter (List<Set> sets, Context context){
         this.sets = sets;
         this.context = context;
-        this.mSetViewModel = new ViewModelProvider(((ListAllSetsActivity)context)).get(SetViewModel.class);
+        this.mSetViewModel = new ViewModelProvider(((AllSetsListActivity)context)).get(SetViewModel.class);
     }
     @NonNull
     @Override
@@ -221,13 +194,13 @@ class SetAdapter extends RecyclerView.Adapter<SetViewHolder>{
             public void onClick(View v) {
                 //Toast.makeText(context, "ADD" + m.getName(), Toast.LENGTH_LONG).show();
 
-                mSetViewModel.insert(m);
+                //mSetViewModel.insert(m);
 
 
                 Intent replyIntent = new Intent();
-                replyIntent.putExtra(EXTRA_REPLY, m.getName());
-                ((ListAllSetsActivity)context).setResult(((ListAllSetsActivity)context).RESULT_OK, replyIntent);
-                ((ListAllSetsActivity)context).finish();
+                replyIntent.putExtra(EXTRA_REPLY, m.getCode());
+                ((AllSetsListActivity)context).setResult(((AllSetsListActivity)context).RESULT_OK, replyIntent);
+                ((AllSetsListActivity)context).finish();
             }
         });
 

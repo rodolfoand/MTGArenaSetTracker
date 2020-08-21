@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name=".ListAllSetsActivity"
+        <activity android:name=".AllSetsListActivity"
             android:parentActivityName="com.rodolfo.mtgarenasettracker.MainActivity"
             android:label="Select the set"
             ></activity>
