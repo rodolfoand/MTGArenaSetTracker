@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,9 +13,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rodolfo.mtgarenasettracker.adapter.MySetsListAdapter;
+import com.rodolfo.mtgarenasettracker.view.adapter.MySetsAdapter;
 import com.rodolfo.mtgarenasettracker.model.Set;
-import com.rodolfo.mtgarenasettracker.room.SetViewModel;
+import com.rodolfo.mtgarenasettracker.viewmodel.SetViewModel;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class MySetsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
 
         RecyclerView recyclerView = rootView.findViewById(R.id.mySetsRecyclerView);
-        final MySetsListAdapter adapter = new MySetsListAdapter(getActivity());
+        final MySetsAdapter adapter = new MySetsAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -55,7 +54,11 @@ public class MySetsFragment extends Fragment {
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "1", Toast.LENGTH_LONG).show();
+
+//                LiveData<List<Set>> sets = mSetViewModel.getHttpSets("");
+
+
+//                Toast.makeText(view.getContext(), sets.getValue().get(0).getName(), Toast.LENGTH_LONG).show();
                 NavHostFragment.findNavController(MySetsFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }

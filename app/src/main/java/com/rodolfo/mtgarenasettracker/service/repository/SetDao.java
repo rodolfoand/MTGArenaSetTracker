@@ -1,8 +1,7 @@
-package com.rodolfo.mtgarenasettracker.room;
+package com.rodolfo.mtgarenasettracker.service.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -21,7 +20,7 @@ public interface SetDao {
     void deleteAll();
 
     @Query("SELECT * FROM set_table")
-    LiveData<List<Set>> getAll();
+    LiveData<List<Set>> getMySets();
 //
 //    @Query("SELECT * FROM set_table WHERE id IN (:setIds)")
 //    List<Set> loadAllByIds(int[] setIds);

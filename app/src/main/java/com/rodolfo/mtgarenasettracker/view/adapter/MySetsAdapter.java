@@ -1,4 +1,4 @@
-package com.rodolfo.mtgarenasettracker.adapter;
+package com.rodolfo.mtgarenasettracker.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import com.rodolfo.mtgarenasettracker.model.Set;
 
 import java.util.List;
 
-public class MySetsListAdapter extends RecyclerView.Adapter<MySetsListAdapter.MySetViewHolder> {
+public class MySetsAdapter extends RecyclerView.Adapter<MySetsAdapter.MySetViewHolder> {
 
     class MySetViewHolder extends RecyclerView.ViewHolder {
         private final TextView setNameTextView;
@@ -27,7 +27,7 @@ public class MySetsListAdapter extends RecyclerView.Adapter<MySetsListAdapter.My
     private final LayoutInflater mInflater;
     private List<Set> mSets; // Cached copy of words
 
-    public MySetsListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    public MySetsAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public MySetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

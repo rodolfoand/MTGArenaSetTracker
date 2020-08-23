@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.rodolfo.mtgarenasettracker.room.SetViewModel;
+import com.rodolfo.mtgarenasettracker.model.Set;
+import com.rodolfo.mtgarenasettracker.viewmodel.SetViewModel;
+import com.rodolfo.mtgarenasettracker.view.adapter.AllSetsAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
@@ -29,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mSetViewModel = new ViewModelProvider(this).get(SetViewModel.class);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AllSetsListActivity.class);
+                Intent intent = new Intent(view.getContext(), AllSetsActivity.class);
                 startActivityForResult(intent, ALL_SETS_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -66,7 +72,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ALL_SETS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            Toast.makeText(this, data.getStringExtra(SetAdapter.EXTRA_REPLY), Toast.LENGTH_SHORT).show();
+            String code = data.getStringExtra(AllSetsAdapter.EXTRA_REPLY);
+
+            mSetViewModel.getHttpSet(code).observe(this, new Observer<Set>() {
+                @Override
+                public void onChanged(Set set) {
+                    mSetViewModel.insert(set);
+                    Toast.makeText(getApplication(), code, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
