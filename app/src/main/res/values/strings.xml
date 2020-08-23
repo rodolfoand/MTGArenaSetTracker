@@ -17,4 +17,21 @@
     <string name="action_2">action1</string>
     <string name="action_1">action1</string>
     <string name="add">ADD</string>
+    <string name="setname">SetName</string>
+    <string name="totalcards">TotalCards:</string>
+    <string name="_0">0</string>
+    <string name="_0">0</string>
+    <string name="separator">/</string>
+    <string name="_0">0</string>
+    <string name="_100">100</string>
+    <string name="_100">100</string>
+    <string name="uncommon">Uncommon:</string>
+    <string name="rares">Rares:</string>
+    <string name="mythics">Mythics:</string>
+    <string name="_0">0</string>
+    <string name="_100">100</string>
+    <string name="common">Common:</string>
+    <string name="_100">100</string>
+    <string name="_0">0</string>
+    <string name="_100">100</string>
 </resources>

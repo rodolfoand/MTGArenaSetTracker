@@ -17,10 +17,12 @@ public class MySetsAdapter extends RecyclerView.Adapter<MySetsAdapter.MySetViewH
 
     class MySetViewHolder extends RecyclerView.ViewHolder {
         private final TextView setNameTextView;
+        private final TextView setCardCountTextView;
 
         private MySetViewHolder(View itemView) {
             super(itemView);
             setNameTextView = itemView.findViewById(R.id.setNameTextView);
+            setCardCountTextView = itemView.findViewById(R.id.setCardCountTextView);
         }
     }
 
@@ -40,6 +42,7 @@ public class MySetsAdapter extends RecyclerView.Adapter<MySetsAdapter.MySetViewH
         if (mSets != null) {
             Set current = mSets.get(position);
             holder.setNameTextView.setText(current.getName());
+            holder.setCardCountTextView.setText(String.valueOf(current.getCommon()));
         } else {
             // Covers the case of data not being ready yet.
             //holder.wordItemView.setText("No Word");

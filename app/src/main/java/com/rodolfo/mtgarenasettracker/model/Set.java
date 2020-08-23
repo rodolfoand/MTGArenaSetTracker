@@ -70,6 +70,30 @@ public class Set {
     @ColumnInfo(name = "icon_svg_uri")
     private String icon_svg_uri;
 
+    @ColumnInfo(name = "common")
+    private int common;
+
+    @ColumnInfo(name = "uncommon")
+    private int uncommon;
+
+    @ColumnInfo(name = "rare")
+    private int rare;
+
+    @ColumnInfo(name = "mythic")
+    private int mythic;
+
+    @ColumnInfo(name = "my_common")
+    private int my_common;
+
+    @ColumnInfo(name = "my_uncommon")
+    private int my_uncommon;
+
+    @ColumnInfo(name = "my_rare")
+    private int my_rare;
+
+    @ColumnInfo(name = "my_mythic")
+    private int my_mythic;
+
     @Ignore
     public Set() {
     }
@@ -255,6 +279,70 @@ public class Set {
 
     public void setIcon_svg_uri(String icon_svg_uri) {
         this.icon_svg_uri = icon_svg_uri;
+    }
+
+    public int getCommon() {
+        return common;
+    }
+
+    public void setCommon(int common) {
+        this.common = common;
+    }
+
+    public int getUncommon() {
+        return uncommon;
+    }
+
+    public void setUncommon(int uncommon) {
+        this.uncommon = uncommon;
+    }
+
+    public int getRare() {
+        return rare;
+    }
+
+    public void setRare(int rare) {
+        this.rare = rare;
+    }
+
+    public int getMythic() {
+        return mythic;
+    }
+
+    public void setMythic(int mythic) {
+        this.mythic = mythic;
+    }
+
+    public int getMy_common() {
+        return my_common;
+    }
+
+    public void setMy_common(int my_common) {
+        this.my_common = my_common;
+    }
+
+    public int getMy_uncommon() {
+        return my_uncommon;
+    }
+
+    public void setMy_uncommon(int my_uncommon) {
+        this.my_uncommon = my_uncommon;
+    }
+
+    public int getMy_rare() {
+        return my_rare;
+    }
+
+    public void setMy_rare(int my_rare) {
+        this.my_rare = my_rare;
+    }
+
+    public int getMy_mythic() {
+        return my_mythic;
+    }
+
+    public void setMy_mythic(int my_mythic) {
+        this.my_mythic = my_mythic;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class AllSetsActivity extends AppCompatActivity {
 
         mSetViewModel = new ViewModelProvider(this).get(SetViewModel.class);
 
-        mSetViewModel.getHttpSet().observe(this, new Observer<List<Set>>() {
+        mSetViewModel.getSets().observe(this, new Observer<List<Set>>() {
             @Override
             public void onChanged(List<Set> sets) {
                 adapter.setSets(sets);

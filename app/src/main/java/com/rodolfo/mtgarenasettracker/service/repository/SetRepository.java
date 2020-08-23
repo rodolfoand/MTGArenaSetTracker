@@ -3,6 +3,7 @@ package com.rodolfo.mtgarenasettracker.service.repository;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.rodolfo.mtgarenasettracker.model.Set;
 import com.rodolfo.mtgarenasettracker.service.Scryfall;
@@ -13,7 +14,6 @@ import java.util.List;
 public class SetRepository {
     private SetDao mSetDao;
     private LiveData<List<Set>> mMySets;
-    private LiveData<List<Set>> mAllSets;
     private Scryfall mScryfall;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
@@ -33,16 +33,15 @@ public class SetRepository {
         return mMySets;
     }
 
-
-
-//    LiveData<List<Set>> getHttpSets() {
-//        return mAllSets;
-//    }
-    public LiveData<List<Set>> getHttpSets() {
-        return mScryfall.getSet();
+    public LiveData<List<Set>> getSets() {
+        return mScryfall.getSets();
     }
-    public LiveData<Set> getHttpSets(String code) {
-        return mScryfall.getSet(code);
+    public LiveData<Set> getSets(String code) {
+        return mScryfall.getSets(code);
+    }
+
+    public LiveData<Integer> getRarity(String set, String rarity){
+        return mScryfall.getRarity(set, rarity);
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
@@ -50,6 +49,30 @@ public class SetRepository {
     public void insert(Set set) {
         SetRoomDatabase.databaseWriteExecutor.execute(() -> {
             mSetDao.insert(set);
+        });
+    }
+
+    public void updateCommon (String code, int rarity){
+        SetRoomDatabase.databaseWriteExecutor.execute(() ->{
+            mSetDao.updateCommon(code, rarity);
+        });
+    }
+
+    public void updateUncommon (String code, int rarity){
+        SetRoomDatabase.databaseWriteExecutor.execute(() ->{
+            mSetDao.updateUncommon(code, rarity);
+        });
+    }
+
+    public void updateRare (String code, int rarity){
+        SetRoomDatabase.databaseWriteExecutor.execute(() ->{
+            mSetDao.updateRare(code, rarity);
+        });
+    }
+
+    public void updateMythic (String code, int rarity){
+        SetRoomDatabase.databaseWriteExecutor.execute(() ->{
+            mSetDao.updateMythic(code, rarity);
         });
     }
 }

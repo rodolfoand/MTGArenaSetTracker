@@ -32,7 +32,7 @@ public class SecondFragment extends Fragment {
 
         mSetViewModel = new ViewModelProvider(this).get(SetViewModel.class);
 
-        mSetViewModel.getHttpSet().observe(getActivity(), new Observer<List<Set>>() {
+        mSetViewModel.getSets().observe(getActivity(), new Observer<List<Set>>() {
             @Override
             public void onChanged(List<Set> sets) {
                 Toast.makeText(getActivity(), sets.get(0).getName(), Toast.LENGTH_SHORT).show();

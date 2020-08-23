@@ -74,11 +74,39 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ALL_SETS_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             String code = data.getStringExtra(AllSetsAdapter.EXTRA_REPLY);
 
-            mSetViewModel.getHttpSet(code).observe(this, new Observer<Set>() {
+            mSetViewModel.getSets(code).observe(this, new Observer<Set>() {
                 @Override
                 public void onChanged(Set set) {
                     mSetViewModel.insert(set);
                     Toast.makeText(getApplication(), code, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            mSetViewModel.getRarity(code, "common").observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    mSetViewModel.updateCommon(code, integer);
+                }
+            });
+
+            mSetViewModel.getRarity(code, "uncommon").observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    mSetViewModel.updateCommon(code, integer);
+                }
+            });
+
+            mSetViewModel.getRarity(code, "rare").observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    mSetViewModel.updateCommon(code, integer);
+                }
+            });
+
+            mSetViewModel.getRarity(code, "mythic").observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    mSetViewModel.updateCommon(code, integer);
                 }
             });
         }
