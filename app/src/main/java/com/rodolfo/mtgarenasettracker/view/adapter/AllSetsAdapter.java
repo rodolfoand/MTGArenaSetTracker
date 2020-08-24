@@ -48,7 +48,7 @@ public class AllSetsAdapter extends RecyclerView.Adapter<AllSetsAdapter.AllSetVi
             this.nameTextView =
                     itemView.findViewById(R.id.setNameTextView);
             this.setCardCountTextView =
-                    itemView.findViewById(R.id.setCardCountTextView);
+                    itemView.findViewById(R.id.totalCardsTextView);
             this.setImageView =
                     itemView.findViewById(R.id.setImageView);
             this.setImageView =

@@ -82,6 +82,9 @@ public class Set {
     @ColumnInfo(name = "mythic")
     private int mythic;
 
+    @ColumnInfo(name = "total_cards")
+    private int total_cards;
+
     @ColumnInfo(name = "my_common")
     private int my_common;
 
@@ -93,6 +96,9 @@ public class Set {
 
     @ColumnInfo(name = "my_mythic")
     private int my_mythic;
+
+    @ColumnInfo(name = "my_total_cards")
+    private int my_total_cards;
 
     @Ignore
     public Set() {
@@ -343,6 +349,22 @@ public class Set {
 
     public void setMy_mythic(int my_mythic) {
         this.my_mythic = my_mythic;
+    }
+
+    public int getTotal_cards() {
+        return total_cards;
+    }
+
+    public void setTotal_cards(int total_cards) {
+        this.total_cards = total_cards;
+    }
+
+    public int getMy_total_cards() {
+        return my_total_cards;
+    }
+
+    public void setMy_total_cards(int my_total_cards) {
+        this.my_total_cards = my_total_cards;
     }
 
     @Override

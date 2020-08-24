@@ -41,6 +41,7 @@ public class SetRepository {
     }
 
     public LiveData<Integer> getRarity(String set, String rarity){
+        mScryfall.getCards(set, rarity, "");
         return mScryfall.getRarity(set, rarity);
     }
 
@@ -75,4 +76,11 @@ public class SetRepository {
             mSetDao.updateMythic(code, rarity);
         });
     }
+
+    public void deleteSet (Set set){
+        SetRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mSetDao.delete(set);
+        });
+    }
+
 }

@@ -78,37 +78,42 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(Set set) {
                     mSetViewModel.insert(set);
-                    Toast.makeText(getApplication(), code, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), R.string.setIncluded, Toast.LENGTH_SHORT).show();
                 }
             });
 
             mSetViewModel.getRarity(code, "common").observe(this, new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer integer) {
-                    mSetViewModel.updateCommon(code, integer);
+                    mSetViewModel.updateCommon(code, integer * 4);
                 }
             });
 
             mSetViewModel.getRarity(code, "uncommon").observe(this, new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer integer) {
-                    mSetViewModel.updateCommon(code, integer);
+                    mSetViewModel.updateUncommon(code, integer * 4);
                 }
             });
 
             mSetViewModel.getRarity(code, "rare").observe(this, new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer integer) {
-                    mSetViewModel.updateCommon(code, integer);
+                    mSetViewModel.updateRare(code, integer * 4);
                 }
             });
 
             mSetViewModel.getRarity(code, "mythic").observe(this, new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer integer) {
-                    mSetViewModel.updateCommon(code, integer);
+                    mSetViewModel.updateMythic(code, integer * 4);
                 }
             });
         }
+    }
+
+    public void deleteSet(Set set){
+        mSetViewModel.deleteSet(set);
+        Toast.makeText(this, R.string.setDeleted, Toast.LENGTH_LONG).show();
     }
 }

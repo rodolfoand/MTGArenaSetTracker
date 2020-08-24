@@ -2,6 +2,7 @@ package com.rodolfo.mtgarenasettracker.service.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -33,18 +34,18 @@ public interface SetDao {
 //    @Insert
 //    void insertAll(Set... sets);
 //
-//    @Delete
-//    void delete(Set sets);
+    @Delete
+    void delete(Set sets);
 
-    @Query("UPDATE set_table SET common=:rarity WHERE code = :code")
+    @Query("UPDATE set_table SET common=:rarity, total_cards = (:rarity + uncommon + rare + mythic) WHERE code = :code")
     void updateCommon(String code, int rarity);
 
-    @Query("UPDATE set_table SET uncommon=:rarity WHERE code = :code")
+    @Query("UPDATE set_table SET uncommon=:rarity, total_cards = (common + :rarity + rare + mythic) WHERE code = :code")
     void updateUncommon(String code, int rarity);
 
-    @Query("UPDATE set_table SET rare=:rarity WHERE code = :code")
+    @Query("UPDATE set_table SET rare=:rarity, total_cards = (common + uncommon + :rarity + mythic) WHERE code = :code")
     void updateRare(String code, int rarity);
 
-    @Query("UPDATE set_table SET mythic=:rarity WHERE code = :code")
+    @Query("UPDATE set_table SET mythic=:rarity, total_cards = (common + uncommon + rare + :rarity) WHERE code = :code")
     void updateMythic(String code, int rarity);
 }

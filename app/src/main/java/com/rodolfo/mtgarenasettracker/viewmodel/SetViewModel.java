@@ -46,4 +46,9 @@ public class SetViewModel extends AndroidViewModel {
     public void updateMythic(String code, int rarity){
         mRepository.updateMythic(code, rarity);
     }
+
+    public void deleteSet(Set set){
+        mRepository.deleteSet(set);
+    }
+
 }

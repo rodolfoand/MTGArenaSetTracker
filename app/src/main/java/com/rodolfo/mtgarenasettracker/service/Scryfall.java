@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rodolfo.mtgarenasettracker.model.Card;
 import com.rodolfo.mtgarenasettracker.model.Set;
 
 import org.json.JSONArray;
@@ -100,7 +101,7 @@ public class Scryfall {
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d("HTTPpass", "3");
+//                Log.d("HTTPpass", response.toString());
                 Gson gson = new Gson();
 
                 Integer total_cards = new Integer(0);
@@ -113,6 +114,59 @@ public class Scryfall {
                 mutableLiveData.setValue(total_cards);
             }
         }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(json);
+
+        return mutableLiveData;
+    }
+
+
+    public LiveData<List<Card>> getCards(String set, String rarity, String url_more){
+
+        MutableLiveData<List<Card>> mutableLiveData = new MutableLiveData<>();
+
+        String urlCards;
+
+        if (url_more.isEmpty()){
+            urlCards = url + "cards/search?q=s%3A" + set + "+r%3A" + rarity;
+        } else {
+            urlCards = url_more;
+        }
+
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET,
+                urlCards,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("HTTPpassCard", urlCards + response.toString());
+
+
+                        Gson gson = new Gson();
+                        List<Card> cardList = new ArrayList<>();
+                        Type type = new TypeToken<List<Card>>(){}.getType();
+                        cardList.clear();
+                        try {
+                            cardList = gson.fromJson(response.get("data").toString(), type);
+//                            cardList.addAll(gson.fromJson(response.get("data").toString(), type));
+
+                            Log.d("HTTPpassCard", cardList.size() + "");
+                            if (response.get("has_more").toString().equals("true")){
+                                getCards("", "", response.get("next_page").toString()).getValue();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        mutableLiveData.setValue(cardList);
+
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
